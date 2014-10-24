@@ -1,0 +1,48 @@
+module Controller.PostPaidPayment;
+import PaymentMessage, PaymentMessageImpl from Model.PaymentMessage;
+
+interface PostPaidPaymentController
+{
+	Pair<String, List<PaymentMessage>> index();
+	Pair<String, List<PaymentMessage>> inquiry();
+	Pair<String, List<PaymentMessage>> posting();
+}
+
+class PostPaidPaymentControllerImpl 
+	implements PostPaidPaymentController
+{
+	Pair<String, List<PaymentMessage>> index()
+	{
+		return Pair("payment_index", Nil);
+	}
+	
+	Pair<String, List<PaymentMessage>> inquiry()
+	{
+		PaymentMessage p1 = new local PaymentMessageImpl(
+			"Telkom Speedy", "0001567726441", "Salman El Farisi",
+			"August", 300000, 3500
+		);
+		
+		PaymentMessage p2 = new local PaymentMessageImpl(
+			"Telkom Speedy", "0001567726442", "Daya Adianto",
+			"September", 300000, 3500
+		);
+		
+		PaymentMessage p3 = new local PaymentMessageImpl(
+			"Telkom Speedy", "0001567726443", "Niken Fitria",
+			"October", 300000, 3500
+		);
+		
+		List<PaymentMessage> pList = Nil;
+		pList = appendright(pList, p1);
+		pList = appendright(pList, p2);
+		pList = appendright(pList, p3);
+		
+		return Pair("payment_list", pList);
+	}
+	
+	Pair<String, List<PaymentMessage>> posting()
+	{
+		return Pair("", Nil);
+	}
+}

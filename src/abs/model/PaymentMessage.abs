@@ -1,0 +1,24 @@
+module Model.PaymentMessage;
+export *;
+
+interface PaymentMessage
+{
+	String getProductName();
+	String getCustomerId();
+	String getCustomerName();
+	String getBillMonth();
+	Int getBillAmount();
+	Int getAdminFee();
+}
+
+class PaymentMessageImpl(
+	String productName, String customerId, String customerName,
+	String billMonth, Int billAmount, Int adminFee) implements PaymentMessage
+{
+	String getProductName() { return productName; }
+	String getCustomerId() { return customerId; }
+	String getCustomerName() { return customerName; }
+	String getBillMonth() { return billMonth; }
+	Int getBillAmount() { return billAmount; }
+	Int getAdminFee() { return adminFee; }
+}
