@@ -1,0 +1,22 @@
+module Framework.Route;
+
+interface RouteConfig
+{
+	String route(String url);
+}
+
+class RouteConfigImpl implements RouteConfig
+{
+	String route(String url)
+	{
+		String result = case url
+		{
+			"/" => "Controller.Hello.HelloControllerImpl@index";
+			"/payment/index.abs" => "Controller.PostPaidPayment.PostPaidPaymentControllerImpl@index";
+			"/payment/inquiry.abs" => "Controller.PostPaidPayment.PostPaidPaymentControllerImpl@inquiry";
+			_ => "";
+		};
+		
+		return result;
+	}
+}

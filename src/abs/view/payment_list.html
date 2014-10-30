@@ -3,6 +3,7 @@
 	<head>
 	</head>
 	<body>
+		<h3>Payment List</h3>
 		<table border="1">
 			<thead>
 				<tr>
@@ -16,6 +17,15 @@
 				</tr>
 			</thead>
 			<tbody>
+				<tr th:each="data : ${dataList}">
+					<td th:text="${data.productName}"></td>
+					<td th:text="${data.customerId}"></td>
+					<td th:text="${data.customerName}"></td>
+					<td th:text="${data.billMonth}"></td>
+					<td th:text="${data.billAmount}"></td>
+					<td th:text="${data.adminFee}"></td>
+					<td th:text="${data.adminFee}"></td>
+				</tr>
 			</tbody>
 		</table>
 	</body>

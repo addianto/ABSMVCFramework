@@ -1,0 +1,14 @@
+module Controller.Hello;
+
+interface HelloController
+{
+	Pair<String, List<Unit>> index();
+}
+
+class HelloControllerImpl implements HelloController
+{
+	Pair<String, List<Unit>> index()
+	{
+		return Pair("hello", Nil);
+	}
+}

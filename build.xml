@@ -13,6 +13,9 @@
 	<property name="target.java.bin" location="${target}/java/bin" />
 
 	<property name="lib.abs" location="${lib}/absfrontend.jar" />
+	
+	<property name="server" location="../ABSServer" />
+	<property name="server.lib" location="${server}/lib" />
 
 	<path id="build.abs.classpath">
 		<pathelement location="${lib.abs}" />
@@ -69,4 +72,10 @@
 			destfile="${dist}/app.jar"
 			basedir="${target.java.bin}" />
 	</target>
+	<target name="abs.deploy" depends="abs.build.jar">
+		<copy todir="${server.lib}">
+			<file file="${dist}/app.jar" />
+		</copy>
+	</target>
 </project>
+
