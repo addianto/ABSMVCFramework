@@ -20,10 +20,7 @@ class PostPaidPaymentControllerImpl
 	Pair<String, List<PaymentMessage>> inquiry(ABSHttpRequest request)
 	{
 		String productName = request.getInput("product_name");
-		productName = toString(productName);
-		
 		String customerId = request.getInput("customer_id");
-		customerId = toString(customerId);
 		
 		PaymentMessage p1 = new local PaymentMessageImpl(
 			productName, customerId, "Salman El Farisi",
