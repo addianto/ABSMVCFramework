@@ -1,4 +1,4 @@
-module Framework.Route;
+module ABS.Framework.Route;
 
 interface RouteConfig
 {
@@ -11,7 +11,7 @@ class RouteConfigImpl implements RouteConfig
 	{
 		String result = case url
 		{
-			"/" => "Controller.Hello.HelloControllerImpl@index";
+			"/hello/index.abs" => "Controller.Hello.HelloControllerImpl@index";
 			"/payment/index.abs" => "Controller.PostPaidPayment.PostPaidPaymentControllerImpl@index";
 			"/payment/inquiry.abs" => "Controller.PostPaidPayment.PostPaidPaymentControllerImpl@inquiry";
 			_ => "";

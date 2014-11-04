@@ -1,14 +1,21 @@
 module Controller.Hello;
+import ABSHttpRequest from ABS.Framework.Http;
 
 interface HelloController
 {
-	Pair<String, List<Unit>> index();
+	Pair<String, List<String>> index(ABSHttpRequest request);
 }
 
 class HelloControllerImpl implements HelloController
 {
-	Pair<String, List<Unit>> index()
+	Pair<String, List<String>> index(ABSHttpRequest request)
 	{
-		return Pair("hello", Nil);
+		List<String> test = Nil;
+		String customerId = request.getInput("customer_id");
+		String productName = request.getInput("product_name");
+		
+		test = appendright(test, customerId);
+		test = appendright(test, productName);
+		return Pair("hello", test);
 	}
 }

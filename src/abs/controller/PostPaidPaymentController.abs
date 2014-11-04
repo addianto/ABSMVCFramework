@@ -1,35 +1,42 @@
 module Controller.PostPaidPayment;
 import PaymentMessage, PaymentMessageImpl from Model.PaymentMessage;
+import ABSHttpRequest from ABS.Framework.Http;
 
 interface PostPaidPaymentController
 {
-	Pair<String, List<PaymentMessage>> index();
-	Pair<String, List<PaymentMessage>> inquiry();
-	Pair<String, List<PaymentMessage>> posting();
+	Pair<String, List<PaymentMessage>> index(ABSHttpRequest request);
+	Pair<String, List<PaymentMessage>> inquiry(ABSHttpRequest request);
+	Pair<String, List<PaymentMessage>> posting(ABSHttpRequest request);
 }
 
 class PostPaidPaymentControllerImpl 
 	implements PostPaidPaymentController
 {
-	Pair<String, List<PaymentMessage>> index()
+	Pair<String, List<PaymentMessage>> index(ABSHttpRequest request)
 	{
 		return Pair("payment_index", Nil);
 	}
 	
-	Pair<String, List<PaymentMessage>> inquiry()
+	Pair<String, List<PaymentMessage>> inquiry(ABSHttpRequest request)
 	{
+		String productName = request.getInput("product_name");
+		productName = toString(productName);
+		
+		String customerId = request.getInput("customer_id");
+		customerId = toString(customerId);
+		
 		PaymentMessage p1 = new local PaymentMessageImpl(
-			"Telkom Speedy", "0001567726441", "Salman El Farisi",
+			productName, customerId, "Salman El Farisi",
 			"August", 300000, 3500
 		);
 		
 		PaymentMessage p2 = new local PaymentMessageImpl(
-			"Telkom Speedy", "0001567726442", "Daya Adianto",
+			productName, customerId, "Daya Adianto",
 			"September", 300000, 3500
 		);
 		
 		PaymentMessage p3 = new local PaymentMessageImpl(
-			"Telkom Speedy", "0001567726443", "Niken Fitria",
+			productName, customerId, "Niken Fitria",
 			"October", 300000, 3500
 		);
 		
@@ -41,7 +48,7 @@ class PostPaidPaymentControllerImpl
 		return Pair("payment_list", pList);
 	}
 	
-	Pair<String, List<PaymentMessage>> posting()
+	Pair<String, List<PaymentMessage>> posting(ABSHttpRequest request)
 	{
 		return Pair("", Nil);
 	}
