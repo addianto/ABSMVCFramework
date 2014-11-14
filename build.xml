@@ -15,7 +15,7 @@
 	<property name="lib.abs" location="${lib}/absfrontend.jar" />
 	
 	<property name="server" location="../ABSServer" />
-	<property name="server.lib" location="${server}/lib" />
+	<property name="server.web" location="${server}/web" />
 
 	<path id="build.abs.classpath">
 		<pathelement location="${lib.abs}" />

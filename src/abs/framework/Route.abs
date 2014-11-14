@@ -11,9 +11,6 @@ class RouteConfigImpl implements RouteConfig
 	{
 		String result = case url
 		{
-			"/hello/index.abs" => "Controller.Hello.HelloControllerImpl@index";
-			"/payment/index.abs" => "Controller.PostPaidPayment.PostPaidPaymentControllerImpl@index";
-			"/payment/inquiry.abs" => "Controller.PostPaidPayment.PostPaidPaymentControllerImpl@inquiry";
 			_ => "";
 		};
 		
