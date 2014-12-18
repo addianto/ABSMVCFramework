@@ -14,12 +14,17 @@
 
 	<property name="lib.abs" location="${lib}/absfrontend.jar" />
 	
-	<property name="server" location="../ABSServer" />
+	<property name="server" location="D:/GitHub/ABSServer" />
 	<property name="server.web" location="${server}/web" />
 
 	<path id="build.abs.classpath">
 		<pathelement location="${lib.abs}" />
 	</path>
+
+	<!-- Check if absproduct property is set -->
+    <condition property="absproduct.set">
+        <isset property="absproduct"/>
+    </condition>
 
 	<fileset dir="${src.abs}" id="src.abs.files">
 		<include name="**/*.abs" />
@@ -47,7 +52,7 @@
 	</target>
 
 	<target name="abs.generate.java" description="Generates Java code"
-		depends="clean,prepare">
+		depends="clean,prepare" if="absproduct.set">
 		<echo>FILE: ${src.abs.fileargs}</echo>
 		<java classname="abs.backend.java.JavaBackend" fork="true"
 			failonerror="true" classpathref="build.abs.classpath">
@@ -55,6 +60,7 @@
 			<arg value="-sourceonly" />
 			<arg value="-d" />
 			<arg value="${target.java.src}" />
+			<arg value="-product=${absproduct}" />
 		</java>
 	</target>
 
@@ -72,10 +78,10 @@
 			destfile="${dist}/app.jar"
 			basedir="${target.java.bin}" />
 	</target>
+
 	<target name="abs.deploy" depends="abs.build.jar">
-		<copy todir="${server.lib}">
+		<copy todir="${server.web}">
 			<file file="${dist}/app.jar" />
 		</copy>
 	</target>
 </project>
-
